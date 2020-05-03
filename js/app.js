@@ -69,8 +69,8 @@ const checkLetter = (button) => {
 
 //====== Check Win or Lose
 const checkWin = () => {
-  const letters = document.querySelectorAll('.letter');
-  const reveal = document.querySelectorAll('.show');
+  const letters = document.querySelectorAll('.letter'); // all letters in guess phrase
+  const reveal = document.querySelectorAll('.show'); // correctly guessed letters - letters that are shown
   const title = document.querySelector('.title');
   const button = overlay.querySelector('.btn__reset');
   const tries = document.querySelectorAll('.tries');
@@ -124,12 +124,9 @@ const reset = () => {
 
 // ================================================================
 
-document.addEventListener('DOMContentLoaded', () => {
-
   overlay.addEventListener('click', (e) => {
     // hide overlay when button pressed
     if (e.target.className === 'btn__reset') {
-      console.log(e.target);
       removeOverlay();
       // initialize overlay classes
       overlay.classList.remove('win','lose');
@@ -137,10 +134,14 @@ document.addEventListener('DOMContentLoaded', () => {
       addPhraseToDisplay(getRandomPhraseAsArray(phrases));
     }
 
-    // listen to keyboard
-    document.addEventListener('keydown', (e) => {
-      // initialize overlay classes
-      overlay.classList.remove('win','lose');
+  }); // overlay listener end
+
+  // listen to keyboard
+  document.addEventListener('keydown', (e) => {
+
+    //register key press only is overlay is hidden **special thanks to Jay for fixing the overlay issue**
+    if (overlay.style.display === 'none') {
+
       const buttons = document.querySelectorAll('button');
       // loop through qwerty buttons
       for (let i = 0; i < buttons.length; i++) {
@@ -162,28 +163,26 @@ document.addEventListener('DOMContentLoaded', () => {
           checkWin();
         }
       }
-    }); // keyboard listener end
 
-    // listen to click on qwerty buttons
-    qwerty.addEventListener('click', (e) => {
-      let target = e.target;
-      let button;
-      if (target.tagName === 'BUTTON') {
-        target.classList.add('chosen');
-        target.disabled = true;
-        button = target.textContent.toLowerCase();
-        const letterfound = checkLetter(button);
-        const score = document.querySelector('#scoreboard ol');
-        const tries = document.querySelectorAll('.tries');
-        // is match is null remove chance and missed + 1
-        if (letterfound === null) {
-          missed++;
-          score.removeChild(tries[0]);
-        }
-        checkWin();
+    }
+  }); // keyboard listener end
+
+  // listen to click on qwerty buttons
+  qwerty.addEventListener('click', (e) => {
+    let target = e.target;
+    let button;
+    if (target.tagName === 'BUTTON') {
+      target.classList.add('chosen');
+      target.disabled = true;
+      button = target.textContent.toLowerCase();
+      const letterfound = checkLetter(button);
+      const score = document.querySelector('#scoreboard ol');
+      const tries = document.querySelectorAll('.tries');
+      // is match is null remove chance and missed + 1
+      if (letterfound === null) {
+        missed++;
+        score.removeChild(tries[0]);
       }
-    }); // qwerty click listener end
-
-  }); // overlay listener end
-
-});
+      checkWin();
+    }
+  }); // qwerty click listener end
