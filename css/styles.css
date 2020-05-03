@@ -1,12 +1,13 @@
 /* Main styles */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&Roboto:300');
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
 
 /* Variables */
 
 :root {
   --color-win: #78CF82;
   --color-lose: #D94545;
-  --color-start: #5b85b7;
+  --color-start: #eeb300;
   --color-neutral: #445069;
   --color-neutral-light: #D2D2D2;
   --color-keys: #37474F;
@@ -41,6 +42,8 @@ h2 {
   text-transform: uppercase;
   font-size: var(--font-size-large);
   margin: 0;
+  font-family: 'Patua One', sans-serif;
+  letter-spacing: 5px;
 }
 
 button {
@@ -144,11 +147,11 @@ button:hover {
 .btn__reset:hover {
   cursor: pointer;
   color: #fff;
-  background: var(--color-win);
+  background: #299959;
 }
 
 .btn__reset:active {
-  background: #299959;
+  background: #1a7e45;
 }
 
 
@@ -168,6 +171,8 @@ button:hover {
 }
 
 .title {
+  font-family: 'Patua One', sans-serif;
+  letter-spacing: 5px;
   color: #FFF;
   transition: transform .2s cubic-bezier(1,-0.59,.25,1.56),
               color .2s ease;
@@ -175,7 +180,7 @@ button:hover {
 
 .title:hover {
   transform: scale(1.2);
-  color: #ffdc26;
+  color: #c74015;
 }
 
 .start {
@@ -183,7 +188,8 @@ button:hover {
 }
 
 .start a {
-  color: var(--color-win);
+  color: #fff;
+  background: #14b947;
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
   transition: var(--transition);
@@ -193,17 +199,23 @@ button:hover {
   background-color: var(--color-win);
 }
 
+.win h2:hover,
+.lose h2:hover {
+ color: #e3a300;
+}
+
 .win a.btn__reset,
 .lose a.btn__reset {
   text-decoration: none;
 }
 
 .win a.btn__reset {
-  color: var(--color-win);
+  background: #0097f7;
+  color: #fff;
 }
 
 .win a.btn__reset:hover {
-  background: #0097f7;
+  background: #007ecf;
   color: #fff;
 }
 
@@ -213,9 +225,10 @@ button:hover {
 
 .lose a {
   color: var(--color-lose);
+  background: #ffdc26;
 }
 
 .lose a.btn__reset:hover {
   color: var(--color-lose);
-  background: #ffdc26;
+  background: #ffbc26;
 }
