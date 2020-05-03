@@ -212,5 +212,6 @@ button:hover {
 }
 
 .lose a.btn__reset:hover {
+  color: var(--color-lose);
   background: #ffdc26;
 }
