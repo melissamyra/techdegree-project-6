@@ -139,7 +139,7 @@ const reset = () => {
   // listen to keyboard
   document.addEventListener('keydown', (e) => {
 
-    //register key press only is overlay is hidden **special thanks to Jay for fixing the overlay issue**
+    //register key press only if overlay is hidden **special thanks to Jay for fixing the overlay issue**
     if (overlay.style.display === 'none') {
 
       const buttons = document.querySelectorAll('button');
