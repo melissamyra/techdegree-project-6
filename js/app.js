@@ -90,10 +90,9 @@ const checkWin = () => {
   }
   // if button clicked, remove overlay
   button.addEventListener('click', (e) => {
-    if (e.target.className === 'btn__reset') {
+    if (e.target.textContent === 'Play Again' || e.target.textContent === 'Try Again') {
       reset();
       removeOverlay();
-      checkWin();
     }
   });
 };
@@ -106,14 +105,10 @@ const reset = () => {
   missed = 0; // reset missed
   // clear current guess phrase
   phraseUL.innerHTML = '';
-  // clear scoreboard
-  score.innerHTML = '';
+  
   // add lives/chances back to scoreboard
-  for (let i = 0; i < 5; i++) {
-    const tries = document.createElement('LI');
-    tries.className = 'tries';
-    tries.innerHTML = '<img src="images/liveHeart.png" height="35" width="30">';
-    score.appendChild(tries);
+  for (let i = 0; i < tries.length; i++) {
+    tries[i].innerHTML = '<img src="images/liveHeart.png" height="35" width="30">';
   }
   // reset/reenable keys
   for (let i = 0; i < chosen.length; i++) {
@@ -154,8 +149,8 @@ const reset = () => {
           const tries = document.querySelectorAll('.tries');
           // is match is null && button is still enabled, remove chance and missed + 1
           if (letterfound === null && buttons[i].disabled === false) {
+            tries[missed].innerHTML = '<img src="images/lostHeart.png" alt="" height="35" width="30">';
             missed++;
-            score.removeChild(tries[0]);
           }
           //disables pressed keys ( has to be after null check otherwise keys can be double pressed )
           buttons[i].classList.add('chosen');
@@ -180,8 +175,8 @@ const reset = () => {
       const tries = document.querySelectorAll('.tries');
       // is match is null remove chance and missed + 1
       if (letterfound === null) {
+        tries[missed].innerHTML = '<img src="images/lostHeart.png" alt="" height="35" width="30">';
         missed++;
-        score.removeChild(tries[0]);
       }
       checkWin();
     }
