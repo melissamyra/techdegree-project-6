@@ -154,12 +154,6 @@ button:hover {
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  #phrase {
-    /* transform: scale(.5); */
-  }
-}
-
 /* Overlay */
 
 #overlay {
