@@ -7,36 +7,37 @@ const chances = tries.length;
 let missed = 0;
 
 const phrases = [
-  'A wish upon a star',
-  'One is loved because one is loved',
-  'Life is a blank canvas',
-  'Every moment matters',
-  'Every tiny victory is worth celebrating'
+  'To be or not to be',
+  'Live Love laugh',
+  'Mind over matter',
+  'Cat got your tongue',
+  'Better late than never',
+  'Curiousity killed the cat',
+  'Dead men tell no tales',
+  'Live and let live',
+  'Once bitten twice shy',
+  'Be there or be square'
 ];
 
 // FUNCTIONS ======================================================
 
 //====== Remove Overlay
-const removeOverlay = () => {
-  overlay.style.display = 'none';
-};
+const removeOverlay = () => overlay.style.display = 'none';
 
 //====== Show Overlay
-const showOverlay = () => {
-  overlay.style.display = '';
-};
+const showOverlay = () => overlay.style.display = '';
 
 //====== Access random array index and split phrase into a new array of letters
-const getRandomPhraseAsArray = (array) => {
+const getRandomPhraseAsArray = array => {
   const randomNum = Math.floor(Math.random() * array.length);
   const phraseChosen = array[randomNum];
-  const letters = phraseChosen.split('').map((x)=>{ return x.toLowerCase(); });
+  const letters = phraseChosen.split('').map((x)=> x.toLowerCase());
   return letters;
 };
 
 
 //====== Append phrase letters onto div
-const addPhraseToDisplay = (array) => {
+const addPhraseToDisplay = array => {
   //loop through array to create list item with content from array and appending to UL
   for (let i = 0; i < array.length; i++) {
     let list = document.createElement('LI');
@@ -49,6 +50,26 @@ const addPhraseToDisplay = (array) => {
       list.className = 'space';
     }
   }
+
+  let spaces = document.querySelectorAll('.space');
+
+  const breakIntoNextLine = space => {
+    space.style.display = 'block';
+    space.style.width = 0;
+  };
+  breakIntoNextLine(spaces[1]);
+
+  const phrase = array.join('');
+
+  if (phrase === 'curiousity killed the cat') {
+    breakIntoNextLine(spaces[0]);
+  }
+
+  if (spaces.length > 3) {
+    breakIntoNextLine(spaces[3]);
+  }
+  
+
 }
 
 //====== Check if button pressed matches any letters in phrase
@@ -79,14 +100,14 @@ const checkWin = () => {
     showOverlay();
     overlay.classList.add('win');
     button.textContent = 'Play Again';
-    title.textContent = 'YOU WIN!!!';
+    title.textContent = 'You won!!!';
   }
   // if used up all chances = LOSE!
   if (missed === chances) {
     showOverlay();
     overlay.classList.add('lose');
     button.textContent = 'Try Again';
-    title.textContent = 'YOU LOST :(';
+    title.textContent = 'You ran out of lives :(';
   }
   // if button clicked, remove overlay
   button.addEventListener('click', (e) => {

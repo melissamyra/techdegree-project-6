@@ -1,13 +1,12 @@
 /* Main styles */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&Roboto:300');
-@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Varela+Round&display=swap');
 /* Variables */
 
 :root {
   --color-win: #78CF82;
   --color-lose: #D94545;
-  --color-start: #eeb300;
+  --color-start: #00beee;
   --color-neutral: #445069;
   --color-neutral-light: #D2D2D2;
   --color-keys: #37474F;
@@ -39,11 +38,13 @@ li, ol, ul {
 
 h2 {
   margin: 0;
-  text-transform: uppercase;
-  font-size: var(--font-size-large);
+  font-size: 5rem;
   margin: 0;
-  font-family: 'Patua One', sans-serif;
-  letter-spacing: 5px;
+  font-family: 'Courgette', cursive;
+}
+
+h2:hover {
+  cursor: pointer;
 }
 
 button {
@@ -92,6 +93,7 @@ button:hover {
 #phrase {
   padding: 10px 50px;
   margin: 0 auto;
+  width: max-content;
 }
 
 .letter {
@@ -110,12 +112,14 @@ button:hover {
 
 .space {
   width: 50px;
+  /* display: block; */
 }
 
 .show {
-  color: #000;
-  background-color: #76CE82;
+  color: #fff;
+  background-color: var(--color-start);
   text-transform: uppercase;
+  font-weight: 600;
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
   transition: var(--transition);
@@ -136,24 +140,25 @@ button:hover {
 }
 
 .btn__reset {
-  padding: 8px 15px;
-  margin: 50px auto;
+  padding: 2px;
+  margin: 20px auto;
   background: #FFFFFF;
-  border-radius: 5px;
-  font-size: var(--font-size-medium);
+  font-size: 1rem;
+  font-weight: 600;
   text-transform: uppercase;
+  border-bottom: 3px solid transparent;
+  transition: background-color .2s, color .2s, border .2s;
 }
 
 .btn__reset:hover {
   cursor: pointer;
-  color: #fff;
-  background: #299959;
 }
 
-.btn__reset:active {
-  background: #1a7e45;
+@media (max-width: 768px) {
+  #phrase {
+    /* transform: scale(.5); */
+  }
 }
-
 
 /* Overlay */
 
@@ -171,64 +176,76 @@ button:hover {
 }
 
 .title {
-  font-family: 'Patua One', sans-serif;
-  letter-spacing: 5px;
-  color: #FFF;
+  font-size: 6rem;
+  color: var(--color-start);
   transition: transform .2s cubic-bezier(1,-0.59,.25,1.56),
               color .2s ease;
 }
 
 .title:hover {
-  transform: scale(1.2);
-  color: #c74015;
+  transform: scale(1.1);
+  color: #ffab0f;
 }
 
 .start {
-  background-color: var(--color-start);
+  background-color: #fff;
 }
 
 .start a {
-  color: #fff;
-  background: #14b947;
-  -webkit-transition: var(--transition);
+  color: var(--color-start);
+  background: transparent;
+  /* -webkit-transition: var(--transition);
   -o-transition: var(--transition);
-  transition: var(--transition);
+  transition: var(--transition); */
+  margin-bottom: 100px;
 }
 
-.win {
-  background-color: var(--color-win);
+.start a:hover {
+  color: var(--color-win);
+  border-color: var(--color-win);
 }
 
-.win h2:hover,
+.win h2 {
+  color: #70e243;
+}
+
+.win h2,
+.lose h2 {
+  font-size: 4rem;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.win h2:hover{
+ color: #ffbd16;
+}
+
 .lose h2:hover {
- color: #e3a300;
+  color: #f71f3c;
 }
 
 .win a.btn__reset,
 .lose a.btn__reset {
   text-decoration: none;
+  margin-bottom: 150px;
 }
 
 .win a.btn__reset {
-  background: #0097f7;
-  color: #fff;
+  color: #00beee;
 }
 
 .win a.btn__reset:hover {
-  background: #007ecf;
-  color: #fff;
+  border-color:#00beee;
 }
 
-.lose {
-  background-color: var(--color-lose);
+.lose h2 {
+  color: #fe4a49;
 }
 
 .lose a {
-  color: var(--color-lose);
-  background: #ffdc26;
+  color: #ffab0f;
 }
 
 .lose a.btn__reset:hover {
-  color: var(--color-lose);
-  background: #ffbc26;
+  color: #ffab0f;
+  border-color: #ffab0f;
 }
